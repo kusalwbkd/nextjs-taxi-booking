@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono,Outfit as OutfitFont } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
+import Provider from "./Provider";
+import { Suspense } from "react";
+import Loading from "./_components/Loading";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const Outfit = OutfitFont({
+  variable: "--font-outfit",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
@@ -23,12 +27,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${Outfit.className}  antialiased`}
       >
+        <Provider>
+        <Suspense fallback={<Loading />}>
         {children}
+        </Suspense>
+        </Provider>
       </body>
     </html>
+    </ClerkProvider>
   );
 }
