@@ -13,7 +13,7 @@ const Payment = () => {
       setCarAmount
     }=useUserLocation()
     console.log("car amount from payment",carAmount);
-  const amount=100
+  
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string)
   const options: any = {
     mode: 'payment',
@@ -25,7 +25,7 @@ const Payment = () => {
     <div className="max-w-lg mx-auto p-5 bg-white shadow-lg rounded-lg mt-8">
       <h1 className="text-xl font-semibold mb-4">Checkout</h1>
       <Elements stripe={stripePromise} options={options}>
-        <CheckOutForm amount={amount} />
+        <CheckOutForm amount={options.amount} />
       </Elements>
     </div>
   )
