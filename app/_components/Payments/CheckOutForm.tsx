@@ -36,7 +36,7 @@ const CheckOutForm = ({amount}:{amount:number}) => {
             elements,
             clientSecret,
             confirmParams:{
-                return_url:`https://www.nextjs-taxi-booking-murex.vercel.app/payment-success?amount=${amount}`
+                return_url:`https://nextjs-taxi-booking-murex.vercel.app/payment-success?amount=${amount}`
               
             }
         })
