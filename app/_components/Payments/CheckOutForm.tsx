@@ -76,8 +76,8 @@ const CheckOutForm = ({amount}:{amount:number}) => {
         disabled:opacity-50 disabled:animate-pulse cursor-pointer'
         disabled={!stripe || loading}
         >
-            
-            pay now</button>
+            {amount ? `Pay ${amount}`:''}
+           </button>
     </form>
   )
 }

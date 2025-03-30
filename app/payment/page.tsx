@@ -5,6 +5,7 @@ import { loadStripe } from '@stripe/stripe-js'
 import React from 'react'
 import CheckOutForm from '../_components/Payments/CheckOutForm'
 import { useUserLocation } from '@/context/UserLocationContext'
+import { useRouter } from 'next/navigation'
 
 const Payment = () => {
     const{
@@ -12,7 +13,12 @@ const Payment = () => {
       carAmount,
       setCarAmount
     }=useUserLocation()
-    console.log("car amount from payment",carAmount);
+  
+  const router=useRouter()
+  if(routesDirections?.length<1){
+    router.push('/')
+
+  }
   
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string)
   const options: any = {
